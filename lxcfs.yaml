@@ -1,0 +1,46 @@
+apiVersion: settings.k8s.io/v1alpha1
+kind: PodPreset
+metadata:
+  name: lxcfs
+spec:
+  selector:
+    matchLabels:
+      lxcfs: enable
+  volumeMounts:
+    - mountPath: /proc/cpuinfo
+      name: cpuinfo
+    - mountPath: /proc/diskstats
+      name: diskstats
+    - mountPath: /proc/meminfo
+      name: meminfo
+    - mountPath: /proc/stat
+      name: stat
+    - mountPath: /proc/swaps
+      name: swaps
+    - mountPath: /proc/uptime
+      name: uptime
+  volumes:
+  - name: cpuinfo
+    hostPath:
+      path: /var/lib/lxcfs/proc/cpuinfo
+      type: File
+  - name: diskstats
+    hostPath:
+      path: /var/lib/lxcfs/proc/diskstats
+      type: File
+  - name: meminfo
+    hostPath:
+      path: /var/lib/lxcfs/proc/meminfo
+      type: File
+  - name: stat
+    hostPath:
+      path: /var/lib/lxcfs/proc/stat
+      type: File
+  - name: swaps
+    hostPath:
+      path: /var/lib/lxcfs/proc/swaps
+      type: File
+  - name: uptime
+    hostPath:
+      path: /var/lib/lxcfs/proc/uptime
+      type: File

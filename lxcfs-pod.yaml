@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: lxcfs-test
+  labels:
+    lxcfs: enable
+spec:
+  restartPolicy: Never
+  containers:
+  - name: lxcfs-test
+    image: "ubuntu:16.04"
+    resources:
+      limits:
+        memory: "1Gi"
+        cpu: 1000m
+    command: ["/bin/sh", "-c", "sleep 360000"]
